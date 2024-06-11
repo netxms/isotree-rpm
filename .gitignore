@@ -1,0 +1,5 @@
+/cache/
+/dist/
+/result/
+/SOURCES/isotree-*.gz
+.DS_Store
