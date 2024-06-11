@@ -20,6 +20,7 @@ steps:
       - apk add git
       - git clone --recursive https://github.com/netxms/isotree isotree-0.6.1
       - cd isotree-0.6.1 && git checkout 86b8933 && cd ..
+      - mkdir SOURCES
       - tar zcf SOURCES/isotree-0.6.1.tar.gz isotree-0.6.1
   - name: build
     image: ghcr.io/netxms/builder-rpm:latest
@@ -75,6 +76,7 @@ steps:
       - apk add git
       - git clone --recursive https://github.com/netxms/isotree isotree-0.6.1
       - cd isotree-0.6.1 && git checkout 86b8933 && cd ..
+      - mkdir SOURCES
       - tar zcf SOURCES/isotree-0.6.1.tar.gz isotree-0.6.1
   - name: build
     image: ghcr.io/netxms/builder-rpm:latest
@@ -133,6 +135,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 6b29e8400904acc5cf3cdec10d448b7dbc9d6748fda2b930f6a6f04e135edd04
+hmac: 53ced26bb9243738dd190956f318c1d5ab9ba81301dec15610c41c47bc1fb70e
 
 ...
