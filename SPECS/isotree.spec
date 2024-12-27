@@ -35,14 +35,19 @@ isotree development files.
 
 %build
 %if 0%{?amzn} == 2
-ln -s /usr/bin/cmake3 /usr/bin/cmake
-%endif
-
+%cmake3 --no-warn-unused-cli -DNO_TEMPLATED_VERSIONS=1 .
+%cmake3_build
+%else
 %cmake --no-warn-unused-cli -DNO_TEMPLATED_VERSIONS=1 .
 %cmake_build
+%endif
 
 %install
+%if 0%{?amzn} == 2
+%cmake3_install
+%else
 %cmake_install
+%endif
 
 %files
 %{_libdir}/libisotree.so.0.6.1
