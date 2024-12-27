@@ -7,7 +7,11 @@ License:        BSD-2
 URL:            https://github.com/netxms/isotree
 Source0:        %{name}-%{version}.tar.gz
 
+%if 0%{?amzn} == 2
+BuildRequires:  cmake3
+%else
 BuildRequires:  cmake
+%endif
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 
@@ -30,6 +34,10 @@ isotree development files.
 %setup -q
 
 %build
+%if 0%{?amzn} == 2
+ln -s /usr/bin/cmake3 /usr/bin/cmake
+%endif
+
 %cmake --no-warn-unused-cli -DNO_TEMPLATED_VERSIONS=1 .
 %cmake_build
 
