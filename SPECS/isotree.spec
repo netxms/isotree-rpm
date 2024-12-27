@@ -1,17 +1,13 @@
 Name:           isotree
 Version:        0.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Isolation Forest and variations such as SCiForest and EIF
 
 License:        BSD-2
 URL:            https://github.com/netxms/isotree
 Source0:        %{name}-%{version}.tar.gz
 
-%if 0%{?amzn} == 2
 BuildRequires:  cmake3
-%else
-BuildRequires:  cmake
-%endif
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 
@@ -34,20 +30,11 @@ isotree development files.
 %setup -q
 
 %build
-%if 0%{?amzn} == 2
 %cmake3 --no-warn-unused-cli -DNO_TEMPLATED_VERSIONS=1 .
 %cmake3_build
-%else
-%cmake --no-warn-unused-cli -DNO_TEMPLATED_VERSIONS=1 .
-%cmake_build
-%endif
 
 %install
-%if 0%{?amzn} == 2
 %cmake3_install
-%else
-%cmake_install
-%endif
 
 %files
 %{_libdir}/libisotree.so.0.6.1
@@ -62,5 +49,8 @@ isotree development files.
 %{_datadir}/pkgconfig/isotree.pc
 
 %changelog
+* Fri Dec 27 2024 Alex Kirhenshtein <alk@netxms.org> - 0.6.1-2
+- Fixes for Amazon Linux 2
+
 * Tue Jun 11 2024 Alex Kirhenshtein <alk@netxms.org> - 0.6.1-1
 - Initial package
